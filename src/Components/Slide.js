@@ -5,7 +5,7 @@ import styled from 'styled-components'
 const SlideCSS = styled.div`
     height:100%;
     width:100%;
-    background-image:url('${imageUrl => imageUrl}');
+    background-image:url('${({imageUrl}) => imageUrl}');
     background-color:pink;
     background-size:cover;
     background-repeat:no-repeat;

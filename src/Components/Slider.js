@@ -3,6 +3,7 @@ import styled from "styled-components";
 import SliderContent from "./SliderContent";
 import Slide from './Slide'
 import Arrow from "./Arrows";
+import { act } from "react-dom/test-utils";
 
 const sliderData = [
   {
@@ -129,24 +130,58 @@ const Slider = () => {
     const getWidth = () => window.innerWidth
 
     const [content, setContent] = useState({
+        activeIndex:0,
         translate:0,
         transition:0.45
     });
 
+    const {activeIndex,translate,transition} = content
+
+    const nextSlide = () => {
+        if(activeIndex === sliderData.length -1) {
+            return setContent({
+                ...content,
+                translate:0,
+                activeIndex:0,  
+            })
+        }
+
+        setContent({
+            ...content,
+                translate:(activeIndex+1) * getWidth(),
+                activeIndex:activeIndex+1,  
+        })
+    }
+
+    const prevSlide = () => {
+        if(activeIndex === 0) {
+            return setContent({
+                ...content,
+                translate:(sliderData.length -1) * getWidth(),
+                activeIndex:sliderData.length -1,  
+            })
+        }
+
+        setContent({
+            ...content,
+                translate:(activeIndex-1) * getWidth(),
+                activeIndex:activeIndex-1,  
+        })
+    }
 
   return (
     <SliderCSS>
       <SliderContent
-        translate={content.translate}
-        transition={content.transition}
+        translate={translate}
+        transition={transition}
         width={getWidth() * sliderData.length}
       >
        {sliderData.map((slide) => (
         <Slide key={slide.id} content={slide} />
        ))}
       </SliderContent>
-      <Arrow direction='left' />
-      <Arrow direction='right' />
+      <Arrow direction='left' handleClick={prevSlide}/>
+      <Arrow direction='right' handleClick={nextSlide}/>
     </SliderCSS>
   );
 };

@@ -28,7 +28,7 @@ const ImageCSS = styled.p`
 `;
 
 const Arrow = ({ direction, handleClick }) => {
-  console.log(direction);
+//   console.log(direction);
   return (
     <ArrowCSS onClick={handleClick} direction={direction}>
       <ImageCSS direction={direction}>
