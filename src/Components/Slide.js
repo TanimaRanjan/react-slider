@@ -18,8 +18,11 @@ const Slide = ({content}) => {
     console.log(content)
     return (
         <SlideCSS imageUrl={content.imageUrl} >
-            <img src={content.imageUrl} height={content.height} width={content.width} />
-        
+
+            <figure>
+                <img src={content.imageUrl} height={content.height} width={content.width} />
+                <figcaption >{content.title}</figcaption>
+            </figure>
         </SlideCSS>
     )
 }

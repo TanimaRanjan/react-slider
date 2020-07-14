@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import SliderContent from "./SliderContent";
 import Slide from './Slide'
+import Arrow from "./Arrows";
 
 const sliderData = [
   {
@@ -128,7 +129,7 @@ const Slider = () => {
     const getWidth = () => window.innerWidth
 
     const [content, setContent] = useState({
-        translate:-20,
+        translate:0,
         transition:0.45
     });
 
@@ -144,6 +145,8 @@ const Slider = () => {
         <Slide key={slide.id} content={slide} />
        ))}
       </SliderContent>
+      <Arrow direction='left' />
+      <Arrow direction='right' />
     </SliderCSS>
   );
 };
